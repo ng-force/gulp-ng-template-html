@@ -1,6 +1,6 @@
 {
   "name": "gulp-ng-template-html",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "Precompile AngularJS templates to a JS file and html file",
   "main": "index.js",
   "directories": {
@@ -31,7 +31,9 @@
     "angularjs",
     "ng-template",
     "ngTemplate",
-    "templateCache"
+    "templateCache",
+    "gulp-ng-template",
+    "gulp-ng"
   ],
   "author": "andy.lv",
   "license": "MIT",
