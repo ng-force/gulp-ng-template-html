@@ -2,18 +2,18 @@ gulp-ng-template-html
 ====
 Precompile AngularJS templates to a JS file(angular load function compile it, so that can add it into $templateCache.) and html file(all is dom element)
 
-[![NPM version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-
 this repo is branch of gulp-ng-template(some codes are come from gulp-ng-template), if you want to use gulp ng-template, please move to [gulp-ng-template](https://github.com/teambition/gulp-ng-template).
 
 Thanks [Teambition](http://teambition.com) for contribute gulp-ng-template!
 
 ## Difference
-*gulp-ng-template-html*: compile your html file into 2 file, one is js,one is html. js will provide a loadedTemplateUrl function for load your template,
+
+###gulp-ng-template-html
+compile your html file into 2 file, one is js,one is html. js will provide a loadedTemplateUrl function for load your template,
 after load done will automate compile it into $templateCache.
 
-*gulp-ng-template*: Precompile AngularJS templates to a JS file with $templateCache. It put all the html into js.
+###gulp-ng-template
+Precompile AngularJS templates to a JS file with $templateCache. It put all the html into js.
 
 ## Install
 
@@ -33,9 +33,10 @@ gulp.task('templates:dist', function() {
   gulp.src('src/tpl/**/*.html')
     .pipe(minifyHtml({empty: true, quotes: true}))
     .pipe(ngTemplate({
-      moduleName: 'genTemplates',
+      moduleName: 'myTemplates',
       standalone: true
     }))
+    .pipe(uglify())  //you want mini all js? use this
     .pipe(gulp.dest('dist'));  // output file: 'dist/js/templates.js'&'dist/js/templates.html'
 });
 ```
@@ -98,7 +99,6 @@ test/js/templates.js:
 
 })(angular);
 ```
-
 
 test/js/templates.html:
 
