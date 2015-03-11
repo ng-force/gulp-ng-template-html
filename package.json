@@ -1,0 +1,42 @@
+{
+  "name": "gulp-ng-template-html",
+  "version": "0.0.1",
+  "description": "Precompile AngularJS templates to a JS file and html file",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "gulp-util": "^3.0.3",
+    "multiline": "^1.0.2",
+    "through2": "^1.1.1"
+  },
+  "devDependencies": {
+    "gulp-sequence": "^0.3.2",
+    "gulp-mocha": "^2.0.0",
+    "gulp-clean": "^0.3.1",
+    "should": "^5.0.0",
+    "merge2": "^0.3.1",
+    "gulp": "^3.8.11",
+    "gulp-jshint": "^1.9.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ng-force/gulp-ng-template-html.git"
+  },
+  "keywords": [
+    "angularjs",
+    "ng-template",
+    "ngTemplate",
+    "templateCache"
+  ],
+  "author": "andy.lv",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ng-force/gulp-ng-template-html/issues"
+  },
+  "homepage": "https://github.com/ng-force/gulp-ng-template-html"
+}
