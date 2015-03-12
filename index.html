@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="gulp-ng-template-html : build angular template in html and use js to compile it">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>gulp-ng-template-html</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ng-force/gulp-ng-template-html">View on GitHub</a>
+
+          <h1 id="project_title">gulp-ng-template-html</h1>
+          <h2 id="project_tagline">build angular template in html and use js to compile it</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/ng-force/gulp-ng-template-html/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/ng-force/gulp-ng-template-html/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="gulp-ng-template-html" class="anchor" href="#gulp-ng-template-html" aria-hidden="true"><span class="octicon octicon-link"></span></a>gulp-ng-template-html</h1>
+
+<p>Precompile AngularJS templates to a JS file(angular load function compile it, so that can add it into $templateCache.) and html file(all is dom element)</p>
+
+<p>this repo is branch of gulp-ng-template(some codes are come from gulp-ng-template), if you want to use gulp ng-template, please move to <a href="https://github.com/teambition/gulp-ng-template">gulp-ng-template</a>.</p>
+
+<p>Thanks <a href="http://teambition.com">Teambition</a> for contribute gulp-ng-template!</p>
+
+<h2>
+<a id="difference" class="anchor" href="#difference" aria-hidden="true"><span class="octicon octicon-link"></span></a>Difference</h2>
+
+<h3>
+<a id="gulp-ng-template-html-1" class="anchor" href="#gulp-ng-template-html-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>gulp-ng-template-html</h3>
+
+<p>compile your html file into 2 file, one is js,one is html. js will provide a loadedTemplateUrl function for load your template,
+after load done will automate compile it into $templateCache.</p>
+
+<h3>
+<a id="gulp-ng-template" class="anchor" href="#gulp-ng-template" aria-hidden="true"><span class="octicon octicon-link"></span></a>gulp-ng-template</h3>
+
+<p>Precompile AngularJS templates to a JS file with $templateCache. It put all the html into js.</p>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
+
+<p>Install with <a href="https://npmjs.org/package/gulp-ng-template-html">npm</a></p>
+
+<pre><code>npm install --save-dev gulp-ng-template-html
+</code></pre>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-js"><pre><span class="pl-s">var</span> minifyHtml <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>gulp-minify-html<span class="pl-pds">'</span></span>);
+<span class="pl-s">var</span> ngTemplate <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>gulp-ng-template-html<span class="pl-pds">'</span></span>);
+
+gulp.task(<span class="pl-s1"><span class="pl-pds">'</span>templates:dist<span class="pl-pds">'</span></span>, <span class="pl-st">function</span>() {
+  gulp.<span class="pl-sc">src</span>(<span class="pl-s1"><span class="pl-pds">'</span>src/tpl/**/*.html<span class="pl-pds">'</span></span>)
+    .pipe(minifyHtml({empty<span class="pl-k">:</span> <span class="pl-c1">true</span>, quotes<span class="pl-k">:</span> <span class="pl-c1">true</span>}))
+    .pipe(ngTemplate({
+      moduleName<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>myTemplates<span class="pl-pds">'</span></span>,
+      standalone<span class="pl-k">:</span> <span class="pl-c1">true</span>
+    }))
+    .pipe(uglify())  <span class="pl-c">//you want mini all js? use this</span>
+    .pipe(gulp.dest(<span class="pl-s1"><span class="pl-pds">'</span>dist<span class="pl-pds">'</span></span>));  <span class="pl-c">// output file: 'dist/js/templates.js'&amp;'dist/js/templates.html'</span>
+});</pre></div>
+
+<h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
+
+<p>test/a.html:</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>test<span class="pl-pds">"</span></span>&gt;A&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<p>test/b.html:</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s1"><span class="pl-pds">"</span>test<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">span</span>&gt;B&lt;/<span class="pl-ent">span</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<p><code>gulp test</code>:</p>
+
+<div class="highlight highlight-js"><pre>gulp.task(<span class="pl-s1"><span class="pl-pds">'</span>test<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> () {
+  <span class="pl-k">return</span> gulp.<span class="pl-sc">src</span>([<span class="pl-s1"><span class="pl-pds">'</span>test/a.html<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>test/b.html<span class="pl-pds">'</span></span>])
+    .pipe(ngTemplate())
+    .pipe(gulp.dest(<span class="pl-s1"><span class="pl-pds">'</span>test<span class="pl-pds">'</span></span>));
+});</pre></div>
+
+<p>test/js/templates.js:</p>
+
+<div class="highlight highlight-js"><pre>;(<span class="pl-st">function</span>(<span class="pl-vpf">angular</span>){
+  <span class="pl-s1"><span class="pl-pds">'</span>use strict<span class="pl-pds">'</span></span>;
+
+  <span class="pl-s">var</span> appConfig <span class="pl-k">=</span> angular.module(<span class="pl-s1"><span class="pl-pds">'</span>testModule<span class="pl-pds">'</span></span>, []);
+
+  appConfig.config([<span class="pl-s1"><span class="pl-pds">'</span>$provide<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">$provide</span>) {
+    $provide.decorator(<span class="pl-s1"><span class="pl-pds">'</span>$templateCache<span class="pl-pds">'</span></span>, [<span class="pl-s1"><span class="pl-pds">'</span>$http<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>$delegate<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>$injector<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">$http</span>, <span class="pl-vpf">$delegate</span>, <span class="pl-vpf">$injector</span>) {
+      <span class="pl-s3">$delegate</span>.<span class="pl-en">loadedTemplateUrl</span> <span class="pl-k">=</span> <span class="pl-st">function</span> (<span class="pl-vpf">url</span>) {
+        $http({
+          url<span class="pl-k">:</span> url,
+          method<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>GET<span class="pl-pds">'</span></span>
+        }).then(<span class="pl-st">function</span> (<span class="pl-vpf">response</span>) {
+          <span class="pl-k">if</span> (response.<span class="pl-sc">status</span> <span class="pl-k">===</span> <span class="pl-c1">200</span>) {
+            $injector.get(<span class="pl-s1"><span class="pl-pds">'</span>$compile<span class="pl-pds">'</span></span>)(response.<span class="pl-sc">data</span>);
+          }
+        });
+      };
+      <span class="pl-k">return</span> $delegate;
+    }]);
+  }]);
+
+  appConfig.run([<span class="pl-s1"><span class="pl-pds">'</span>$templateCache<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>$http<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>$compile<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">$templateCache</span>, <span class="pl-vpf">$http</span>, <span class="pl-vpf">$compile</span>) {
+    <span class="pl-c">//TODO:please replace you URL or Use this loadedTemplateUrl to load a template</span>
+    $templateCache.loadedTemplateUrl(<span class="pl-s1"><span class="pl-pds">'</span>your URL address<span class="pl-pds">'</span></span>);
+    <span class="pl-c">//demo: $templateCache.loadedTemplateUrl('/template/ng-template.html');</span>
+  }]);
+
+})(angular);</pre></div>
+
+<p>test/js/templates.html:</p>
+
+<div class="highlight highlight-js"><pre>
+<span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>text/ng-template<span class="pl-pds">"</span></span> id<span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>a.html<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+  <span class="pl-k">&lt;</span>div <span class="pl-st">class</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>test<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>A<span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
+
+<span class="pl-k">&lt;</span>/script<span class="pl-k">&gt;</span>
+
+<span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>text/ng-template<span class="pl-pds">"</span></span> id<span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>b.html<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+  <span class="pl-k">&lt;</span>div <span class="pl-st">class</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>test<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+  <span class="pl-k">&lt;</span>span<span class="pl-k">&gt;</span>B<span class="pl-k">&lt;</span>/span<span class="pl-k">&gt;</span>
+<span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
+
+<span class="pl-k">&lt;</span>/script<span class="pl-k">&gt;</span>
+</pre></div>
+
+<h2>
+<a id="options" class="anchor" href="#options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Options</h2>
+
+<h3>
+<a id="modulename" class="anchor" href="#modulename" aria-hidden="true"><span class="octicon octicon-link"></span></a>moduleName</h3>
+
+<p><em>Optional</em>, Type: <code>String</code>, Default: <code>'ngTemplates'</code>.</p>
+
+<p>Name of the AngularJS module.</p>
+
+<h3>
+<a id="standalone" class="anchor" href="#standalone" aria-hidden="true"><span class="octicon octicon-link"></span></a>standalone</h3>
+
+<p><em>Optional</em>, Type: <code>Boolean</code>, Default: <code>false</code>.</p>
+
+<p>Create an AngularJS module.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">gulp-ng-template-html maintained by <a href="https://github.com/ng-force">ng-force</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
