@@ -6,7 +6,7 @@ this repo is branch of gulp-ng-template(some codes are come from gulp-ng-templat
 
 Thanks [Teambition](http://teambition.com) for contribute gulp-ng-template!
 
-## Difference
+## Different
 
 ###gulp-ng-template-html
 compile your html file into 2 file, one is js,one is html. js will provide a loadedTemplateUrl function for load your template,

@@ -9,13 +9,13 @@ var gulp = require('gulp'),
   gulpSequence = require('gulp-sequence');
 
 gulp.task('jshint', function () {
-  return gulp.src(['*.js', 'test/index.js'])
+  return gulp.src(['*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
 
 gulp.task('clean', function () {
-  return gulp.src(['test/templates.js', 'test/js'])
+  return gulp.src(['test/templates.js', 'test/templates.html'])
     .pipe(clean({force: true}));
 });
 
@@ -27,8 +27,8 @@ gulp.task('ngTemplate()', function () {
 
 gulp.task('test', gulpSequence(
   'clean',
-  'ngTemplate()',
-  'clean'
+  'ngTemplate()'
+  //'clean'
 ));
 
 gulp.task('default', gulpSequence('jshint', 'test'));

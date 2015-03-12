@@ -57,16 +57,16 @@ module.exports = function (options) {
 })(angular);
    */});
 
-  var htmlFile = new gutil.File({
-    cwd: __dirname,
-    base: __dirname,
-    path: path.join(__dirname, htmlFilePath)
-  });
-  var jsFile = new gutil.File({
-    cwd: __dirname,
-    base: __dirname,
-    path: path.join(__dirname, jsFilePath)
-  });
+  var htmlFile = createFile(htmlFilePath);
+  var jsFile = createFile(jsFilePath);
+
+  function createFile(file) {
+    return new gutil.File({
+      cwd: __dirname,
+      base: __dirname,
+      path: path.join(__dirname, file)
+    });
+  }
 
   function normalizeName(name) {
     return name.replace(/\\/g, '/');
